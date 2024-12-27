@@ -1,0 +1,198 @@
+以下是一个示例的 **prompt.txt** 文件内容，用来记录你（用户）与我（ChatGPT）之间的对话过程。为避免篇幅过长，**我对部分重复或无关的内容做了精简**，以保证阅读连贯性和可追溯性。
+
+---
+
+# prompt.txt
+
+**User**：  
+> 我求你仔细认真的把这个全篇给看咯，我要学会怎么做  
+> 「此处是题目要求的大段文字，内容概括：需要fork仓库到GitHub，完成均线交叉策略的回测并提供两个API，最后写在README.md中说明API用法等。」
+
+**Assistant**：  
+> 下面我会分步骤、详细地给你讲解应该如何做……  
+> （此处为针对题目分步骤的实现方式、如何fork、如何使用vnpy或backtrader、以及如何实现API的说明。）
+
+---
+
+**User**：  
+> tushare  …（贴出Tushare平台接口文档片段）  
+> 也不是，你继续看  
+
+**Assistant**：  
+> （查看并介绍Tushare的stock_basic接口、daily接口等，用于获取平安银行的行情数据……）
+
+---
+
+**User**：  
+> 连一起，我现在怎样拿到他的csv？  
+> 「引用题目要求：回测品类平安银行、回测周期2023-01-01到2023-12-31、本金1000000、滑点万分之一、策略均线穿越…」  
+
+**Assistant**：  
+> 这里给你一个从零开始的完整思路，帮助你从Fork到写回测策略代码，再到如何获取CSV文件……  
+> （随后给出Tushare示例，通过 daily 接口获取 `000001.SZ` 在 2023 年的数据，并保存为CSV。）
+
+---
+
+**User**：  
+> backtest_ma.py，你把它按题目要求完整的写出来吧，谢谢了
+> （再次引用题目的具体要求：12/26日均线交叉策略、资金管理、滑点等）
+
+**Assistant**：  
+> 以下是一个完整示例的 `backtest_ma.py`，满足题目要求……  
+> （提供基于backtrader的策略脚本，包含MaCrossStrategy、run_backtest等实现细节。）
+
+---
+
+**User**：  
+> "<<ImageDisplayed>>这个具体怎么用啊"
+
+**Assistant**：  
+> 解释“POST /set_backtest”的含义与使用方式，提供了curl、Postman等示例，以及如何与后端进行交互的流程。
+
+---
+
+**User**：  
+> 如果直接在浏览器地址里可以怎么填写啊
+
+**Assistant**：  
+> 说明浏览器地址栏只能发GET请求，POST要用fetch、Ajax或表单等方式提交……（提供HTML表单示例或JS fetch示例。）
+
+---
+
+**User**：  
+> 你把这个html写大一点写全一点能够自己填的并且提交后会自动转到result
+
+**Assistant**：  
+> 给出 index.html 的完整示例：使用表单 + JavaScript fetch 提交 JSON，成功后跳转到 /result。
+
+---
+
+**User**：  
+> 显示回测请求失败，但我什么都没改为啥会失败，你再思考一下
+
+**Assistant**：  
+> 列举可能的错误原因：后端没启动、CORS跨域、路由大小写不一致、后端内部异常等，指导如何在Network和Console查看报错信息。
+
+---
+
+**User**：  
+> 127.0.0.1 - - [27/Dec/2024 06:59:44] "OPTIONS /set_backtest HTTP/1.1" 200 -  
+> 这是什么错，说明我index.html是起作用了的
+
+**Assistant**：  
+> 解释这是浏览器的预检请求，不是错误。若只看到OPTIONS没有POST，可能是CORS未配置；指导如何通过后端或flask-cors解决。
+
+---
+
+**User**：  
+> 成功了，那你现在把README.md写出来吧，一定要尽可能详细哦，多种调试方法都可以哦，直接用index.html肯定最方便哦
+
+**Assistant**：  
+> 给出一个完整而详细的示例 README.md，包含：项目介绍、依赖安装、目录结构、如何获取数据、如何跑后端、如何测试API、常见问题排查等。
+
+---
+
+**User**：  
+> 你现在把prompt.txt给写出来，请你尽可能地把我们所有聊过的内容都带上，但是重复的部分可以适当精简，然后记得让我的prompt显得专业一点
+
+**Assistant**：  
+> （即本文件，用于记录对话过程。）
+
+---
+
+（结束）
+
+---
+
+以上就是**简化**后的对话汇总。所有核心内容都保留了，并对部分重复做了精炼，保证能清晰地展示问题与解答的来龙去脉。请将本文件命名为 `prompt.txt`，与项目代码一并提交，即可满足题目的要求。
+
+以下是一个示例的 **prompt.txt** 文件，将你（User）和我（Assistant）在近期所有对话的核心内容都串联起来，做适当的精简与整理。若有敏感信息（如真实 Tushare Token 等）请自行脱敏或替换。你可以将此内容复制并保存为 `prompt.txt` 放在你的项目根目录下，以满足题目的提交要求。
+
+**Assistant**  
+给出 prompt.txt 示例，汇总前面对话……
+
+---
+
+**User**  
+我发现实际在使用的时候，index.html 上的日期变化并不会影响任何回测结果，是因为我们是把时间写死了吗？如果写死了，是在哪里？
+
+---
+
+**Assistant**  
+在 backtest_ma.py / set_backtest 里写死了日期，要把日期从前端传给后端、再传给 backtest 函数……
+
+---
+
+**User**  
+你可以使用任意的 python 后端框架。需要实现的 api: 第一个为 post 方法，为设置周期以及对应回测的股票。第二个为 get 方法，将策略回测的收益率、最后的总权益返回。都不能写死，每一次都要 tushare 下载一次并且时间也要变化。重写一下 app.py
+
+---
+
+**Assistant**  
+给出新的 app.py 示例：  
+- 不写死日期，使用 Tushare 动态下载  
+- 并将后端接受的参数传给 run_backtest……
+
+---
+
+**User**  
+那这个你也改下 backtest_ma.py，改成日期不写死，从前端传入 start_date、end_date
+
+---
+
+**Assistant**  
+给出 backtest_ma.py 新版本：  
+- 接收 start_date/end_date  
+- 在 backtrader feed 里 fromdate=..., todate=... 动态化……
+
+---
+
+**User**  
+app.py 同文件夹里有一个 STOCK_MAP.csv，长下面这样：你把他俩连起来
+
+---
+
+**Assistant**  
+更新 app.py，读取 STOCK_MAP.csv，使用 “股票名称 -> ts_code” 映射，下载并回测……
+
+---
+
+**User**  
+现在长这样，然后 fetch_data.py 里长这样:  
+
+```python
+# fetch_data.py
+import tushare as ts
+
+ts.set_token("xxxxxxxxxxx")
+pro = ts.pro_api()
+data = pro.query('stock_basic', exchange='', list_status='L', fields='ts_code,symbol,name,area,industry,list_date')
+data.to_csv("STOCK_MAP.csv", index=False)
+print("数据获取完毕，已保存为 pingan.csv！")
+```
+
+你现在重新写 readme，感谢你
+
+---
+
+**Assistant**  
+写出一个更详细的 README.md，包含项目结构、依赖安装、如何 fetch_data 生成 STOCK_MAP.csv、如何使用 app.py、API 文档、index.html 调试、多种测试方法、常见问题排查等……
+
+---
+
+**User**  
+把我们后面这些对话也做成 prompt.txt 补上去
+
+---
+
+**Assistant**  
+（当前回答）  
+将所有后续对话精简整理，形成统一的 prompt.txt 内容……
+
+---
+
+（结束）
+
+---
+
+以上就是与你的完整对话记录的精简版本，去掉了多余的重复解释，但保留了关键的问答和实现思路，能够全面反映本次开发与调试过程。

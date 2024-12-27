@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>回测参数设置</title>
+</head>
+<body>
+  <h1>动态回测参数设置</h1>
+  <form id="backtestForm">
+    <label for="stock">股票名称:</label>
+    <input type="text" id="stock" value="平安银行"><br><br>
+
+    <label for="start_date">开始日期:</label>
+    <input type="date" id="start_date" value="2023-01-01"><br><br>
+
+    <label for="end_date">结束日期:</label>
+    <input type="date" id="end_date" value="2023-12-31"><br><br>
+
+    <button type="submit">回测</button>
+  </form>
+
+  <script>
+  document.getElementById('backtestForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const stock = document.getElementById('stock').value;
+    const startDate = document.getElementById('start_date').value;
+    const endDate = document.getElementById('end_date').value;
+
+    fetch('http://127.0.0.1:8000/set_backtest', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ stock, start_date: startDate, end_date: endDate })
+    })
+    .then(resp => resp.json())
+    .then(data => {
+      console.log('回测完成:', data);
+      // 跳转到结果页面
+      window.location.href = 'http://127.0.0.1:8000/result';
+    })
+    .catch(err => console.error('回测请求失败:', err));
+  });
+  </script>
+</body>
+</html>
